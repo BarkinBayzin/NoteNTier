@@ -53,6 +53,7 @@
             this.lvUsers.TabIndex = 5;
             this.lvUsers.UseCompatibleStateImageBehavior = false;
             this.lvUsers.View = System.Windows.Forms.View.Details;
+            this.lvUsers.DoubleClick += new System.EventHandler(this.lvUsers_DoubleClick);
             // 
             // columnHeader1
             // 
@@ -82,6 +83,7 @@
             this.Controls.Add(this.lvUsers);
             this.Name = "frmAdmin";
             this.Text = "frmAdmin";
+            this.Load += new System.EventHandler(this.frmAdmin_Load);
             this.ResumeLayout(false);
 
         }
