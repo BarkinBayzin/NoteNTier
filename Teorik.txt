@@ -1,0 +1,62 @@
+﻿
+Architectural Pattern (Mimari Patternle)
+
+Architectural Pattern'ler, bir projenin sistematik işleyişinden(çalışma mekanizmasından, sistemn içerisiindeki iş akışiından) sorumludur. Projenin tüm çalışma mantığı ve sistemsel işleyişi ile ilgilenen bir şablondur. Bozuldukları zaman proje çöker
+
+Design Patternler ise, kesinlikle bir projenin sistematik işleyişi ile ilgilenmez. Proje içetisinden çıkardığım zaman proje çökmez. Ancak performansı ciddi ölçüde kaybedilir. Projenin kurulumana bir katkıları yoktur. Ancak mimari patternler ile uyum sağlamaları gerekir ki asıl verimli bir şekilde performansı arttırabilsin.
+
+_____________________________________________________________________________
+
+* Yönetilibelirlik
+* Ekip Çalışması
+* Performans
+
+Açısından bütün sorumlulukları tek tek propjelere ayırdığımız mimarilere Layered(Katmanlı) Architecture Pattern denir.
+
+Bunlardan N-Tier Architectural Patternler bütün katmanların bağımsız olması prensibini uygulayarak ciddi ölçüde esneklik sağlar..
+Tek bir projede hemn veritabanı hem tasarım hem de classların tutulması bir hata durumnda projenizin esnekliğini ciddi ölçüde kısıtlayacaktır.
+Ancak bütün görevler kendi sorumluluklarını uygulayan ayrı projelerde tutuluyorsa daha fazla esneklik kazanıp aynı zamanda hataya daha hızlı ve kolay şekikde müdahele edilebilir ve performans kazanılabilir ve aynı zamanda ekip üyeleri farklı noktalardan kolayca çalışabilirler..
+
+Katmanlı mimari kullanmak için aklınızdaki projeyi görev yapacak ayrı ayrı parçalara ayırmalısınız..
+Projenizin bütün halini bölerek yönetmeye çalıştığınızda ve her projeye görevlerini yazdığınızda bir katmanlı mimari uygulamış olursunuz.
+
+Katmanlı Mimari geleneksel olarak 3 katmandan oluşur(Ancak projemizi daha fazla bölmek istediğimizde bu sayının bir limiti yoktur.)
+
+Bir katmanlı mimaride olması gereken katmanlar :
+
+* DAL (Data Access Layer) - Veri Erişim Katmanı :
+Projenizin sadece veritabanı erişimi ile ilgilenecek olan kısmıdır. DBFirst yönteminde sadece veritabanı yansıması almayı sağlarken, CodeFirst'te sorumluluğun ayrılması tek bir katmanla mümkün değildir. Dolayısıyla CF yöntemlerinde yaratacağınız Context sınıfının ayrı bir yerde tutulması gerekir..
+
+DbFirst'te bu katmanın görevi hem veritabnı sınıfının hem Entity'leri hem Enum'ları tutmak olduğu için NTier'in getirdiği esneklik DBFirst'te biraz azalır.
+
+* BLL (Business Logic Layer) - İş Mantığı Katmanı (Projeminiz Beyni) :
+Eğer bir frameworkun sizze sunduğu metotları özelleştirmek(en sağlıklısıdır..) isterseniz veya ek olarak kendi meottlarınızı açmak isterseniz ve bu metotlar tüm her yerde kullanılacak metotlar olacaksa/ortak bir sınıf yaratmak isterseniz bu tarz yapıları bu katmanda toplarsınız.
+Aynı zamanda BLL katmanı tasarım patternlerini(Design Patterns) tutup onların kullanılmasını sağlayan katmandır. (Singleton, GenericRepository, Builder, Factory, Abstract Factory, Visitor, Facade) patternleri bu katmanda kullanılır. Önemli Interface'ler de bu katmanda durur..
+
+* Presentation (UI - User Interface) - Sunum/Kullanıcı Arayüzü:
+Tasarım arayüzünüzdür. 
+Kullanıcı burayı görür. 
+Çalışabilen tek katmandır.(API Hariç)
+Diğer katmanlar DLL olarak algılanacktır.
+Burası sayesinde programınız çalışır ve kullanılabilir..
+
+_____________________________________________________________________________
+
+____________________Code First Yönteminde N-Tier Architecture________________
+
+* DAL : Veri Tabanına erişimi sağlayacağımız alan.
+* MODEL: Tablo olarak class'larımızı tutacak katmandır.
+* MAP : Tablo olarak class'lırınız ayarlarının yapıldığı katmandır.
+* BLL : İş Mantığı
+* UI/Presentation
+
+_____________________________________________________________________________
+
+Katmanlı Mimaride Önemli Kurallar Vardır:
+
+* Eğer bir katman başka bir katmandan referans alıyorsa o yere referans veremez. Bu durum illa isteniyorsa ortak yapıların kullanılabileceği ara bir katman oluşturulur.
+
+* Eğer bir katmandan referans almışşanız bu, o katmanın da referanslarını aldığınız anlamına gelmez. Sizin referans alcağınız katmanları ayrı ayrı almanız gerekir. (BLL içerisinde DAL'ın referansını barındırıyorsa ve DAL'da Entity Framework referansı varsa yaptığınız işlem sşizin BLL katmanınıza otomatik olarak EF'un geleceği anlamına gelmez.)
+
+* Bir projenin BLL, DAL, MODEL katmanları sadece bir tane olabilir. Ancak UI katmanı birden fazla olabilir..
+
