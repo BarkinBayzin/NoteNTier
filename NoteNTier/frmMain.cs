@@ -125,7 +125,8 @@ namespace NoteNTier
         }
         private void linkLblSifre_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            frmPassword frmPassword = new frmPassword(user);
+            frmPassword.ShowDialog();
         }
 
         private void btnSil_Click(object sender, EventArgs e)

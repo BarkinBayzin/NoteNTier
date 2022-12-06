@@ -45,6 +45,7 @@
             this.btnSifreDegistir.TabIndex = 41;
             this.btnSifreDegistir.Text = "Şifre Değiştir";
             this.btnSifreDegistir.UseVisualStyleBackColor = true;
+            this.btnSifreDegistir.Click += new System.EventHandler(this.btnSifreDegistir_Click);
             // 
             // txtYeniSifreTekrar
             // 
