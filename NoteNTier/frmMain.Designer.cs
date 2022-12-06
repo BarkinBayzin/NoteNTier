@@ -45,6 +45,7 @@
             this.btnNewNote.TabIndex = 44;
             this.btnNewNote.Text = "YENİ NOT";
             this.btnNewNote.UseVisualStyleBackColor = true;
+            this.btnNewNote.Click += new System.EventHandler(this.btnNewNote_Click);
             // 
             // lstNotes
             // 
@@ -54,6 +55,7 @@
             this.lstNotes.Name = "lstNotes";
             this.lstNotes.Size = new System.Drawing.Size(227, 404);
             this.lstNotes.TabIndex = 43;
+            this.lstNotes.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lstNotes_MouseClick);
             // 
             // btnEkle
             // 
@@ -64,6 +66,7 @@
             this.btnEkle.TabIndex = 42;
             this.btnEkle.Text = "KAYDET";
             this.btnEkle.UseVisualStyleBackColor = true;
+            this.btnEkle.Click += new System.EventHandler(this.btnEkle_Click);
             // 
             // btnSil
             // 
@@ -73,6 +76,7 @@
             this.btnSil.TabIndex = 41;
             this.btnSil.Text = "NOT SİL";
             this.btnSil.UseVisualStyleBackColor = true;
+            this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
             // 
             // txtContent
             // 
@@ -98,6 +102,7 @@
             this.linkLblSifre.TabIndex = 38;
             this.linkLblSifre.TabStop = true;
             this.linkLblSifre.Text = "Şifre Değiştir";
+            this.linkLblSifre.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblSifre_LinkClicked);
             // 
             // frmMain
             // 
@@ -113,6 +118,7 @@
             this.Controls.Add(this.linkLblSifre);
             this.Name = "frmMain";
             this.Text = "frmMain";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

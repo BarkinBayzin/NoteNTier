@@ -46,7 +46,7 @@ namespace NoteNTier
                             this.Show();
                             break;
                         case UserType.Standart:
-                            frmMain frmMain = new frmMain();
+                            frmMain frmMain = new frmMain(user);
                             this.Hide();
                             frmMain.ShowDialog();
                             this.Show();
