@@ -9,6 +9,12 @@ namespace NoteNTier.Model.Entities
 {
     public class User:BaseEntity
     {
+        public User()
+        {
+            //HashSet data büyüdükçe operasyonları hızlanır, fakat data büyüyene kadar List<> daha performanslıdır.
+            Passwords = new HashSet<Password>();
+            Notes = new HashSet<Note>();
+        }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
